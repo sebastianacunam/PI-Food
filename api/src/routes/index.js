@@ -32,7 +32,7 @@ router.get('/recipes', async (req, res) => {
 router.get('/recipes/:id', async (req, res) => {
     const {id} = req.params
 
-    const recipesApibyId = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&addRecipeInformation=true`)
+    const recipesApibyId = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
     const recipeId = recipesApibyId.data
     
     res.json(recipeId)
