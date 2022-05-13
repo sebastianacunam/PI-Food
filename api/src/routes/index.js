@@ -46,7 +46,8 @@ router.get('/types', async (req, res) => {
         
         const allDiets = await Diet.findAll();
         if(allDiets.length) {
-            res.json('los datos ya han sido ingresados')
+            res.json(allDiets)
+            //ojo acá con lo que llega luego al estado de dietas en el frontend!!!!
 
         } else {
             const apiCall = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=5222`)
