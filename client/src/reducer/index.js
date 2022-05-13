@@ -1,8 +1,12 @@
-import { GET_RECIPES } from "../actions";
+import { GET_RECIPES, 
+    GET_DIETS, 
+    GET_SEARCH,
+} from "../actions";
 
 const initialState = {
     recipes: [],
-    allRecipes: []
+    allRecipes: [],
+    diets: []
 }
 
 function rootReducer (state = initialState, action){
@@ -12,6 +16,16 @@ function rootReducer (state = initialState, action){
                 ...state, 
                 recipes: action.payload,
                 allRecipes: action.payload
+            }
+        case GET_DIETS:
+            return{
+                ...state,
+                diets: action.payload
+            }
+        case GET_SEARCH:
+            return {
+                ...state,
+                recipes: action.payload
             }
         default: 
             return state;
