@@ -11,10 +11,14 @@ export default function CardRecipe ({ name, image, diets, rate, id }){
                 </Link>
                 <img src={image} alt="img not found" width="250px" height="200px"/>
                 <h3>Rate: {rate}</h3>
+                    
                     {
-                        diets.map (d => {
+                        diets?.map (d => {
+                            // console.log(diets)
                             return(
-                                <p>{d}</p>
+                                <section>
+                                    <p key={id}>{d}</p>
+                                </section>
                             )
                         })
                     }
