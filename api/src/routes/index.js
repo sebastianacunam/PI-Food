@@ -31,12 +31,44 @@ router.get('/recipes', async (req, res) => {
 
 router.get('/recipes/:id', async (req, res) => {
     const {id} = req.params
+    let idRecipe = {}
 
-    const recipesApibyId = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
-    const recipeId = recipesApibyId.data
-    
-    res.json(recipeId)
-
+    if(id.includes("-")){
+        try {
+            idRecipe = await Recipe.findOne({
+                where:{id: id},
+                include: {
+                    model: Diet,
+                    attributes: ['name'],
+                    through: {
+                        attributes: [],
+                    }
+                }
+            })
+            res.json(idRecipe)
+        } catch (error) {
+            res.json("No existe tal receta")
+        }        
+    }else {
+        try {
+            const recipesApibyId = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+            const recipeId = recipesApibyId.data
+            idRecipe = {
+                id: recipeId.id,
+                name: recipeId.title,
+                resume: recipeId.summary,
+                rate: recipeId.spoonacularScore,
+                healthy: recipeId.healthScore,
+                instructions: recipeId.instructions,
+                diet: recipeId.diets,
+                image: recipeId.image,
+            }
+            res.json(idRecipe)
+        } catch (error) {
+            res.json("No existe tal receta")
+        }
+        
+    }
     // res.send(recipeId)
     // return res.send(recipeId) 
 })
@@ -50,17 +82,20 @@ router.get('/types', async (req, res) => {
             //ojo acá con lo que llega luego al estado de dietas en el frontend!!!!
 
         } else {
-            const apiCall = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=5222`)
+            const apiCall = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             const apiDiets = apiCall.data.results.map( ele => ele.diets )
             // console.log(apiDiets)
 
-            const diets = []
+            const mixDiets = []
+
             apiDiets.forEach( ele => {
                 ele.forEach( d => {
-                    diets.push(d)
+                    mixDiets.push(d)
                 })
             })
             //console.log (diets) acá tengo todas las dietas en un array de strings
+
+            const diets = new Set(mixDiets)
 
             diets.forEach( typeOfDiet => {
                 Diet.findOrCreate({
@@ -69,6 +104,8 @@ router.get('/types', async (req, res) => {
                     }
                 })
             })
+
+
             const allDiets2 = await Diet.findAll();
             res.json(allDiets2)
         }
@@ -80,7 +117,7 @@ router.get('/types', async (req, res) => {
 
 router.post('/newRecipe', async (req, res) => {
     try {  
-        const { name, resume, rate, healthy, instructions, image, createdInDB, diet } = req.body 
+        const { name, resume, rate, healthy, instructions, image, createdInDB, diets } = req.body 
         
         const newRecipe = await Recipe.create({
             name, 
@@ -90,11 +127,12 @@ router.post('/newRecipe', async (req, res) => {
             instructions, 
             image, 
             createdInDB,
+            //cuando haga el post en el json y en el front tengo que colocar los tipos de dietas posibles!!
         })
         // console.log("newRecipe ------ > ", newRecipe, "\n name, resume, rate, healthy, instructions, image, createdInDB", name, resume, rate, healthy, instructions, image, createdInDB)
         const dietDb = await Diet.findAll({
             where: {
-                name: diet
+                name: diets
             }
         })
 
