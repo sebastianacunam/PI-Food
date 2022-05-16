@@ -31,7 +31,7 @@ router.get('/recipes', async (req, res) => {
 
 router.get('/recipes/:id', async (req, res) => {
     const {id} = req.params
-    let idRecipe = {}
+    let idRecipe 
 
     if(id.includes("-")){
         try {
@@ -95,9 +95,9 @@ router.get('/types', async (req, res) => {
             })
             //console.log (diets) acá tengo todas las dietas en un array de strings
 
-            const diets = new Set(mixDiets)
-
-            diets.forEach( typeOfDiet => {
+           
+            console.log(mixDiets)
+            mixDiets.forEach( typeOfDiet => {
                 Diet.findOrCreate({
                     where:{
                         name: typeOfDiet
