@@ -57,7 +57,7 @@ router.get('/recipes/:id', async (req, res) => {
                 id: recipeId.id,
                 name: recipeId.title,
                 resume: recipeId.summary,
-                rate: recipeId.spoonacularScore,
+                // rate: recipeId.spoonacularScore,
                 healthy: recipeId.healthScore,
                 instructions: recipeId.analyzedInstructions.map( i => i.steps.map( s => s.step )),
                 diet: recipeId.diets,
@@ -120,17 +120,18 @@ router.get('/types', async (req, res) => {
 
 router.post('/newRecipe', async (req, res) => {
     try {  
-        const { name, resume, rate, healthy, instructions, image, createdInDB, diets } = req.body 
+        const { name, resume, /*rate,*/ healthy, instructions, image, createdInDB, diets } = req.body 
         
         const newRecipe = await Recipe.create({
             name, 
             resume, 
-            rate, 
+            // rate, 
             healthy, 
             instructions, 
             image, 
             createdInDB,
             //cuando haga el post en el json y en el front tengo que colocar los tipos de dietas posibles!!
+            
         })
         // console.log("newRecipe ------ > ", newRecipe, "\n name, resume, rate, healthy, instructions, image, createdInDB", name, resume, rate, healthy, instructions, image, createdInDB)
         const dietDb = await Diet.findAll({

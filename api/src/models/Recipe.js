@@ -18,13 +18,13 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    rate:{
-      type: DataTypes.INTEGER,
-      validate:{
-        min:0,
-        max:100
-      },
-    },
+    // rate:{
+    //   type: DataTypes.INTEGER,
+    //   validate:{
+    //     min:0,
+    //     max:100
+    //   },
+    // },
     healthy:{
       type: DataTypes.INTEGER,
       validate:{
