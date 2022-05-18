@@ -4,6 +4,34 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getDiets } from '../actions';
 
+function validate (input){
+    let errors = {};
+    
+    if(!input.name) {
+        errors.name = "This field is required"
+    }
+
+    if(!input.resume){
+        errors.resume = "This field is required"
+    }
+
+    if(!input.rate){
+        errors.rate = "This field is required"
+    } else if (input.rate <= 100 || input.rate >= 0 ){
+        errors.rate = "The rate can only be between 1 to 100"
+    }
+
+    if(!input.healthy){
+        errors.healthy = "This field is required"
+    }else if(input.healthy <= 100 || input.healthy >= 0 ){
+        errors.healthy = "The healthy points can only be between 1 to 100"
+    }
+
+    if(!input.diets.length){
+        errors.diets = "Select at least a type of diet"
+    }
+}
+
 export default function NewRecipe (){
 
     const dispatch = useDispatch();
@@ -16,7 +44,7 @@ export default function NewRecipe (){
 
     //Estados..
         //Éste sería mi estado manejador de errores para el formulario.
-    const [error, setError] = useState({})
+    const [errors, setErrors] = useState({})
         //Éste sería mi estado para los inputs del form. 
     const [input, setInput] = useState({
         name: "",
@@ -52,7 +80,7 @@ export default function NewRecipe (){
 
                     <div>
                         <label>Rate: </label>
-                        <input type="text" value={input.resume}/>
+                        <input type="text" value={input.rate}/>
                     </div>
 
                     <div>
