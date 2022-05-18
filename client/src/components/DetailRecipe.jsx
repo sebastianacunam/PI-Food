@@ -19,7 +19,7 @@ export default function DetailRecipe (props){
             <section>
                 {
                     // console.log(recipeDetail.instructions)
-                    console.log(recipeDetail.resume)
+                    console.log(recipeDetail)
                 }
                 {
                     recipeDetail.name ? 
@@ -36,12 +36,14 @@ export default function DetailRecipe (props){
                             </div>
                             <div>
                                 <h2>Diets: </h2>
-                                <p>{recipeDetail.diet.join(", ")}</p>
-                            
+                                <p>{recipeDetail.diet ? recipeDetail.diet.join(", ") : recipeDetail.diets.map(e=>e.name).join(", ")}</p>
+                             
                             </div>
                             <div>
                                 <h2>Step to step: </h2>
-                                <p>{recipeDetail.instructions}</p>
+                                {recipeDetail.instructions ? 
+                                <p>{recipeDetail.instructions}</p> :
+                                <p>This recipe does not have instructions to follow</p>}
                             </div>
                         </section>
                     :

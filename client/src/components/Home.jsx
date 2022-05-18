@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes, getDiets, filterDiet, orderByName, orderByRate } from '../actions';
+import { getRecipes, getDiets, filterDiet, orderByName, orderByHealthy } from '../actions';
 
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ export default function Home(){
         const allRecipes = useSelector( (state) => state.recipes )
         const allDiets = useSelector ( (state) => state.diets)
     //-------------------------------------------
-        //estado para el re-renderizado de az-za y el de rate
+        //estado para el re-renderizado de az-za y el de .............
         const [order, setOrder] = useState("");
     //-------------------------------------------
         //variables para el paginado
@@ -53,9 +53,9 @@ export default function Home(){
             setOrder(`Ordenado: ${e.target.value}`)
         }
 
-        function handleOrderByRate (e) {
+        function handleOrderByHealthyScore (e) {
             e.preventDefault();
-            dispatch(orderByRate(e.target.value));
+            dispatch(orderByHealthy(e.target.value));
             setOrder(`Ordenado: ${e.target.value}`)
         }
     //-------------------------------------------
@@ -102,7 +102,7 @@ export default function Home(){
                     
                     <div>
                         <h3>POR PUNTUACIÓN</h3>
-                        <select onChange={(e)=> handleOrderByRate(e)}>
+                        <select onChange={(e)=> handleOrderByHealthyScore(e)}>
                             <option value="-">-</option>
                             <option value="asc">Ascendent</option>
                             <option value="desc">Descendent</option>
@@ -122,7 +122,8 @@ export default function Home(){
                             name={recipes.name} 
                             image={recipes.image} 
                             diets={recipes.diets} 
-                            rate={recipes.rate} 
+                            healthy={recipes.healthy}
+                            // rate={recipes.rate} 
                             id={recipes.id}
                             key={recipes.id}/>
                         )

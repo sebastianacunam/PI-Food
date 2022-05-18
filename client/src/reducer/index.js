@@ -4,7 +4,8 @@ import { GET_RECIPES,
     GET_DETAIL,
     FILTER_DIET, 
     ORDER_BY_NAME,
-    ORDER_BY_RATE,
+    ORDER_BY_HEALTHY,
+    POST_RECIPE,
 
 } from "../actions";
 
@@ -89,23 +90,23 @@ function rootReducer (state = initialState, action){
                     recipes: allRecipes
                 }
             }
-        case ORDER_BY_RATE:
-            let orderedArray2 = action.payload === "asc" ? 
+        case ORDER_BY_HEALTHY:
+            let orderedArray2 = action.payload === "desc" ? 
                 state.allRecipes.sort(function (a, b){
-                  if (a.rate > b.rate){
+                  if (a.healthy > b.healthy){
                       return 1
                   }
-                  if (a.rate < b.rate){
+                  if (a.healthy < b.healthy){
                       return -1
                   }
                   return 0
                 }) 
             : 
                 state.allRecipes.sort(function (a, b){
-                    if (a.rate > b.rate){
+                    if (a.healthy > b.healthy){
                         return -1
                     }
-                    if (a.rate < b.rate){
+                    if (a.healthy < b.healthy){
                         return 1
                     }
                     return 0
@@ -122,6 +123,11 @@ function rootReducer (state = initialState, action){
                     ...state,
                     recipes: allRecipes2
                 }
+            }
+        case POST_RECIPE: 
+            return{
+                ...state,
+                recipes: [...state.recipes, action.payload]
             }
         default: 
             return state;

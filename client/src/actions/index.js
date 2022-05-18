@@ -62,13 +62,19 @@ export function orderByName (payload){
     }
 }
 
-export function orderByRate(payload){
+export function orderByHealthy(payload){
     return {
-        type: ORDER_BY_RATE,
+        type: ORDER_BY_HEALTHY,
         payload
     }
 }
 
+export function postRecipes(payload){
+    return async function (dispatch){
+        const json = await axios.post('http://localhost:3001/newRecipe', payload)
+        return json
+    }
+}
 
 export const GET_RECIPES = 'GET_RECIPES'; 
 export const GET_DIETS = 'GET_DIETS'; 
@@ -76,4 +82,5 @@ export const GET_SEARCH = 'GET_SEARCH';
 export const GET_DETAIL = 'GET_DETAIL';
 export const FILTER_DIET = 'FILTER_DIET'; 
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'; 
-export const ORDER_BY_RATE = 'ORDER_BY_RATE'; 
+export const ORDER_BY_HEALTHY = 'ORDER_BY_HEALTHY'; 
+export const POST_RECIPE = 'POST_RECIPE'
