@@ -6,7 +6,7 @@ export default function CardRecipe ({ name, image, diets, rate, id }){
     return (
         <div>
             <div>
-                <Link to ={`/home/${id}`}>
+                <Link to ={`/recipes/${id}`}>
                     <h2>{name}</h2>
                 </Link>
                 <img src={image} alt="img not found" width="250px" height="200px"/>
@@ -16,9 +16,9 @@ export default function CardRecipe ({ name, image, diets, rate, id }){
                         diets?.map (d => {
                             // console.log(diets)
                             return(
-                                <section>
+                                <div>
                                     <p key={id}>{d}</p>
-                                </section>
+                                </div>
                             )
                         })
                     }

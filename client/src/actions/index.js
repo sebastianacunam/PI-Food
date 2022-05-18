@@ -34,6 +34,46 @@ export function searchBar(name){
     }
 }
 
+export function getDetailById (id){
+    return async function (dispatch){
+        try {
+            const json = await axios(`http://localhost:3001/recipes/${id}`)
+            return dispatch({
+                type: GET_DETAIL,
+                payload: json.data
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+
+export function filterDiet(payload){
+    return {
+        type: FILTER_DIET,
+        payload
+    }
+}
+
+export function orderByName (payload){
+    return {
+        type: ORDER_BY_NAME,
+        payload
+    }
+}
+
+export function orderByRate(payload){
+    return {
+        type: ORDER_BY_RATE,
+        payload
+    }
+}
+
+
 export const GET_RECIPES = 'GET_RECIPES'; 
 export const GET_DIETS = 'GET_DIETS'; 
 export const GET_SEARCH = 'GET_SEARCH';
+export const GET_DETAIL = 'GET_DETAIL';
+export const FILTER_DIET = 'FILTER_DIET'; 
+export const ORDER_BY_NAME = 'ORDER_BY_NAME'; 
+export const ORDER_BY_RATE = 'ORDER_BY_RATE'; 

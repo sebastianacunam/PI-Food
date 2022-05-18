@@ -1,22 +1,66 @@
 import React from 'react';
-import { useEffect, /*useState*/ } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes, getDiets } from '../actions';
+import { getRecipes, getDiets, filterDiet, orderByName, orderByRate } from '../actions';
 
 import { Link } from 'react-router-dom';
 
 import CardRecipe from './CardRecipe';
 import SearchBar from './SearchBar';
+import Paginado from './Paginado';
 
 export default function Home(){
     //Estos son mis hooks de React-Redux
         const dispatch = useDispatch();
         const allRecipes = useSelector( (state) => state.recipes )
+        const allDiets = useSelector ( (state) => state.diets)
+    //-------------------------------------------
+        //estado para el re-renderizado de az-za y el de rate
+        const [order, setOrder] = useState("");
+    //-------------------------------------------
+        //variables para el paginado
+    const [currentPage, setCurrentPage] = useState(1)
+    const [recipes] = useState(9)
+
+    const lastRecipe = currentPage * recipes
+    const firstRecipe = lastRecipe - recipes 
+    const currentRecipes = allRecipes.slice(firstRecipe, lastRecipe)
+
+    const paginado = (pageNumbers) => {
+        setCurrentPage(pageNumbers)
+    }
+
     //-------------------------------------------
         useEffect(()=>{
             dispatch(getRecipes());  
             dispatch(getDiets());
         }, [dispatch])
+
+    //-------------------------------------------
+        //funciones manejadoras-----
+
+
+        function handleFilterDiet(e) {
+            e.preventDefault();
+            dispatch(filterDiet(e.target.value));
+            // setCurrentPage(1);
+            // setOrder(`Ordenado: ${e.target.value}`);
+        }
+
+        function handleOrderByName (e) {
+            e.preventDefault();
+            dispatch(orderByName(e.target.value));
+            setOrder(`Ordenado: ${e.target.value}`)
+        }
+
+        function handleOrderByRate (e) {
+            e.preventDefault();
+            dispatch(orderByRate(e.target.value));
+            setOrder(`Ordenado: ${e.target.value}`)
+        }
+    //-------------------------------------------
+
+
 
         return (
             <div>
@@ -32,8 +76,47 @@ export default function Home(){
                     </Link>
                 </div>
 
+                <section>
+                    <div>
+                        <h3>Filtrar por Dieta</h3>
+                        <select onChange={(e)=> handleFilterDiet(e)}>
+                            <option value="-">- </option>
+                            {
+                                allDiets?.map(d=>{
+                                    return (
+                                        <option key={d.id} value={d.name}>{d.name}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+
+                    <div>
+                        <h3>ORDEN ALFABÉTICO</h3>
+                        <select onChange={(e)=> handleOrderByName(e)}>
+                            <option value="-">-</option>
+                            <option value="asc">Ascendent</option>
+                            <option value="desc">Descendent</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <h3>POR PUNTUACIÓN</h3>
+                        <select onChange={(e)=> handleOrderByRate(e)}>
+                            <option value="-">-</option>
+                            <option value="asc">Ascendent</option>
+                            <option value="desc">Descendent</option>
+                        </select>
+                    </div>
+                
+                </section>
+                <Paginado 
+                    recipes={recipes}
+                    allRecipes={allRecipes.length}
+                    paginado={paginado}
+                />
                 {
-                    allRecipes && allRecipes.map( recipes => {
+                    currentRecipes && currentRecipes.map( recipes => {
                         return (
                             <CardRecipe 
                             name={recipes.name} 
