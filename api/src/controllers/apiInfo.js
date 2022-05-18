@@ -1,4 +1,5 @@
 const axios = require ('axios')
+const e = require('express')
 const { Recipe, Diet } = require ('../db')
 const { API_KEY } = process.env
 
@@ -20,22 +21,44 @@ const getRecipeAPI = async () => {
 }
 
 
-const getRecipesDb = async () => {
-    return await Recipe.findAll({
-        include: {
-            model: Diet,
-            attributes: ['name'],
-            through: {
-                attributes: [],
-            }
+// const getRecipesDb = async () => {
+//     return await Recipe.findAll({
+//         include: {
+//             model: Diet,
+//             attributes: ['name'],
+//             through: {
+//                 attributes: [],
+//             }
+//         }
+//     })
+// }
+
+const getRecipesDbSecondTry = async () => {
+    const dbInfo = await Recipe.findAll({include: Diet})
+    const finalDbInfo = dbInfo.map( e => {
+        const diets = []
+        for (let i = 0; i < e.dataValues.diets.length ; i++){
+            diets.push(e.dataValues.diets[i].dataValues.name)
+        }
+        return {
+            id: e.dataValues.id,
+            name: e.dataValues.name,
+            resume: e.dataValues.resume,
+            rate: e.dataValues.rate,
+            healthy: e.dataValues.healthy,
+            instructions: e.dataValues.instructions,
+            image: e.dataValues.image,
+            diets: diets
         }
     })
+    return finalDbInfo
+    //console.log(dbInfo) --> dbInfo tiene como propiedad dataValues, propiedad a la cual tengo que acceder
 }
 //---------------------------------------------------------------
 
 const getAllRecipes = async () => {
     const apiInfo = await getRecipeAPI();
-    const dbInfo = await getRecipesDb();
+    const dbInfo = await getRecipesDbSecondTry();
 
     const allRecipes = apiInfo.concat(dbInfo);
     return allRecipes;
@@ -43,6 +66,7 @@ const getAllRecipes = async () => {
 
 module.exports = {
     getRecipeAPI, 
-    getRecipesDb, 
+    getRecipesDbSecondTry,
+    // getRecipesDb, 
     getAllRecipes
 }

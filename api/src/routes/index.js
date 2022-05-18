@@ -59,7 +59,7 @@ router.get('/recipes/:id', async (req, res) => {
                 resume: recipeId.summary,
                 rate: recipeId.spoonacularScore,
                 healthy: recipeId.healthScore,
-                instructions: recipeId.instructions,
+                instructions: recipeId.analyzedInstructions.map( i => i.steps.map( s => s.step )),
                 diet: recipeId.diets,
                 image: recipeId.image,
             }
@@ -97,7 +97,10 @@ router.get('/types', async (req, res) => {
 
            
             console.log(mixDiets)
-            mixDiets.forEach( typeOfDiet => {
+
+            const diets = new Set(mixDiets)
+
+            diets.forEach( typeOfDiet => {
                 Diet.findOrCreate({
                     where:{
                         name: typeOfDiet
