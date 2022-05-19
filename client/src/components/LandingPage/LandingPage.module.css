@@ -1,0 +1,49 @@
+.background{
+    background-image: url('https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/05/02101555/comida-saludable.jpg');
+    height: 100%;
+    width: 100% ;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.9;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.container{
+    padding:50px;
+    margin:250px;
+    padding-left: 80px;
+    /* color: white; */
+    padding-right: 80px;
+    background-color: rgba(52, 104, 97, 0.767);
+    border-radius: 15px;
+    position: relative;
+}
+
+.welcome { 
+    
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    font-family: 'Poppins';
+    font-size: 50px;
+}
+
+.btn {
+    height: 40px;
+    width: 120px;
+    background-color: rgb(39, 70, 4);
+    border-color: rgb(28, 36, 20);
+    border-radius: 6px;
+} 
+.btn:hover{
+    height: 45px;
+    width: 130px;
+    transition: 0.5s;
+    background-color: rgb(39, 70, 4);
+    border-color: rgb(28, 36, 20);
+    border-radius: 6px;
+}

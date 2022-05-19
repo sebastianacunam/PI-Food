@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getDiets, postRecipes } from '../actions';
+import { getDiets, postRecipes } from '../../actions';
 
 //función validadora.
 function validate (input){
     let errors = {};
-    
+    const onlyNumber = "^[0-9]+$"
     if(!input.name) {
         errors.name = "This field is required"
     }
@@ -26,6 +26,8 @@ function validate (input){
         errors.healthy = "This field is required"
     }else if(input.healthy > 100 || input.healthy <= 0 ){
         errors.healthy = "The healthy points can only be between 1 to 100"
+    } else if (!input.healthy.match(onlyNumber)){
+        errors.healthy = "Must be numbers"
     }
 
     if(!input.diets.length){

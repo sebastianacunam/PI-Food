@@ -1,13 +1,15 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes, getDiets, filterDiet, orderByName, orderByHealthy } from '../actions';
+import { getRecipes, getDiets, filterDiet, orderByName, orderByHealthy } from '../../actions';
 
 import { Link } from 'react-router-dom';
 
-import CardRecipe from './CardRecipe';
-import SearchBar from './SearchBar';
-import Paginado from './Paginado';
+import CardRecipe from '../CardRecipe/CardRecipe';
+import SearchBar from '../SearchBar/SearchBar';
+import Paginado from '../Paginado/Paginado';
+
+import style from './Home.module.css'
 
 export default function Home(){
     //Estos son mis hooks de React-Redux
@@ -63,8 +65,8 @@ export default function Home(){
 
 
         return (
-            <div>
-                <div>
+            <div className={style.background}>
+                <div className={style.menu1}>
                     <h1>we❤food</h1>
                     <SearchBar/>
                     
@@ -76,7 +78,7 @@ export default function Home(){
                     </Link>
                 </div>
 
-                <section>
+                <section className={style.menu2}>
                     <div>
                         <h3>Filtrar por Dieta</h3>
                         <select onChange={(e)=> handleFilterDiet(e)}>
@@ -115,6 +117,7 @@ export default function Home(){
                     allRecipes={allRecipes.length}
                     paginado={paginado}
                 />
+                <h3 >Page: {currentPage}</h3>
                 {
                     currentRecipes && currentRecipes.map( recipes => {
                         return (

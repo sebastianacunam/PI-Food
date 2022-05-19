@@ -1,4 +1,5 @@
 import React from "react";
+import style from './Paginado.module.css'
 
 export default function Paginado({recipes, allRecipes, paginado}){
     const pageNumbers = [];
@@ -10,14 +11,14 @@ export default function Paginado({recipes, allRecipes, paginado}){
     return (
         <div>
             <nav>
-                <ul>
+                <ul className={style.pagination}> 
                 
                 {/* <button className={estilos.pageButtons} onClick={ ()=> firstPage() }> Primera </button>
                 <button className={estilos.pageButtons} onClick={ ()=> prevPage() }> Anterior </button>    */}
                     {pageNumbers &&
                     pageNumbers.map( number => (
-                            <li key={number}>
-                                <p onClick={()=> paginado(number)}>{number}</p>
+                            <li className={style.li} key={number}>
+                                <p className={style.a} onClick={()=> paginado(number)}>{number}</p>
                             </li>
                             ))} 
                 {/* <button className={estilos.pageButtons} onClick={ ()=> nextPage() }> Siguiente </button>   

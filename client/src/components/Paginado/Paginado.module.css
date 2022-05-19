@@ -1,0 +1,35 @@
+.pagination{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 20px;
+    margin: 10px;
+    /* background-color: rgba(165, 158, 158, 0.785); */
+    border-radius: 15px;
+}
+
+.a{
+    display: flex;
+    cursor: pointer;
+    background-color:rgb(96, 143, 44);
+    height: 30px;
+    width: 40px;
+    justify-content: center;
+    padding-top: 8px;
+    border-radius: 40px;
+}
+
+.a:hover{
+    background-color:rgb(67, 101, 28); 
+}
+
+.li{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    padding: 6px;
+    
+}

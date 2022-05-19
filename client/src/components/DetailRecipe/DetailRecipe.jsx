@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getDetailById } from "../actions";
+import { getDetailById } from "../../actions";
 
 export default function DetailRecipe (props){
 

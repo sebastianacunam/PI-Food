@@ -1,0 +1,52 @@
+.recipeCard{
+    display: inline-flex;
+    margin: 20px;
+}
+
+.border{
+    background-color:  rgba(97, 143, 44, 0.61);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    min-height: 300px;
+    width: 460px;
+}
+
+.border:hover{
+    background-color:  rgb(97, 143, 44);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    min-height: 300px;
+    width: 460px;
+}
+
+.subcontainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.img{
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width :330px;
+    height:200px;
+}
+
+.diets{
+    display: block;
+    margin: -20px;
+}
+
+.subsubcont{
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+    margin:10px
+}
+
+.h3{
+    font-size: 17px;
+    color: black;
+    text-decoration: none;
+}

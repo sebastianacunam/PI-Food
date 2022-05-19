@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchBar, getRecipes } from '../actions';
+import { searchBar, getRecipes } from '../../actions';
 
 
 
