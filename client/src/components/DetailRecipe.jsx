@@ -18,8 +18,8 @@ export default function DetailRecipe (props){
         <div>
             <section>
                 {
-                    // console.log(recipeDetail.instructions)
-                    console.log(recipeDetail)
+                    console.log(recipeDetail.instructions)
+                    // console.log(recipeDetail)
                 }
                 {
                     recipeDetail.name ? 
