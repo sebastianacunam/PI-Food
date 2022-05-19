@@ -148,5 +148,5 @@ router.post('/newRecipe', async (req, res) => {
 
 
 })
-
+    console.log("buenas buenas probando")
 module.exports = router;
