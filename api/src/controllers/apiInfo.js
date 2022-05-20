@@ -37,7 +37,7 @@ const getRecipesDbSecondTry = async () => {
     const dbInfo = await Recipe.findAll({include: Diet})
     const finalDbInfo = dbInfo.map( e => {
         const diets = []
-        for (let i = 0; i < e.dataValues.diets.length ; i++){
+        for (let i = 0; i < e.dataValues.diets ; i++){
             diets.push(e.dataValues.diets[i].dataValues.name)
         }
         return {
@@ -51,8 +51,9 @@ const getRecipesDbSecondTry = async () => {
             diets: diets
         }
     })
+    console.log(dbInfo)
     return finalDbInfo
-    //console.log(dbInfo) --> dbInfo tiene como propiedad dataValues, propiedad a la cual tengo que acceder
+    // console.log(dbInfo) --> dbInfo tiene como propiedad dataValues, propiedad a la cual tengo que acceder
 }
 //---------------------------------------------------------------
 

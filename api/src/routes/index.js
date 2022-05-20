@@ -2,7 +2,7 @@ const { default: axios } = require('axios');
 const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
-const { getRecipeAPI, getAllRecipes } = require('../controllers/apiInfo');
+const { getAllRecipes } = require('../controllers/apiInfo');
 const {Recipe, Diet} = require('../db');
 const { API_KEY } = process.env
 
@@ -25,7 +25,7 @@ router.get('/recipes', async (req, res) => {
             console.log(recipeName, "toy akaa")
             
             if(!recipeName) {
-                alert('this recupe does not exist')
+                alert('this recipe does not exist')
             }else {
                 res.send (recipeName)
             }
@@ -100,9 +100,7 @@ router.get('/types', async (req, res) => {
                 })
             })
             //console.log (diets) acá tengo todas las dietas en un array de strings
-
-           
-            console.log(mixDiets)
+            // console.log(mixDiets)
 
             const diets = new Set(mixDiets)
 
