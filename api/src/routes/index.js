@@ -22,7 +22,13 @@ router.get('/recipes', async (req, res) => {
         if (!name) res.send (allRecipes)
         else {
             let recipeName = await allRecipes.filter( r => r.name.toLowerCase().includes(name.toLowerCase()))
-            res.send (recipeName)
+            console.log(recipeName, "toy akaa")
+            
+            if(!recipeName) {
+                alert('this recupe does not exist')
+            }else {
+                res.send (recipeName)
+            }
         }
     } catch (err) {
         console.log(err)
@@ -148,5 +154,5 @@ router.post('/newRecipe', async (req, res) => {
 
 
 })
-    console.log("buenas buenas probando")
+    
 module.exports = router;
