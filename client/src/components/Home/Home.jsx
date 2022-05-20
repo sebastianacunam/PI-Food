@@ -67,21 +67,20 @@ export default function Home(){
         return (
             <div className={style.background}>
                 <div className={style.menu1}>
-                    <h1>we❤food</h1>
-                    <SearchBar/>
-                    
-                    <Link to='/recipe'>
-                        <button>Crear Receta</button>
-                    </Link>
+                    <h1 className={style.filtersFont}>we❤food</h1>
+                    <SearchBar setCurrentPage={setCurrentPage}/>
                     <Link to='/'>
-                        <button>Volver</button>
+                        <button className={style.btnMenu1}>go back!</button>
+                    </Link>
+                    <Link to='/recipe'>
+                        <button className={style.btnMenu1}>create recipe</button>
                     </Link>
                 </div>
 
                 <section className={style.menu2}>
                     <div>
-                        <h3>Filtrar por Dieta</h3>
-                        <select onChange={(e)=> handleFilterDiet(e)}>
+                        <h3 className={style.filtersFont}>filter by diet</h3>
+                        <select className={style.each} onChange={(e)=> handleFilterDiet(e)}>
                             <option value="-">- </option>
                             {
                                 allDiets?.map(d=>{
@@ -94,30 +93,31 @@ export default function Home(){
                     </div>
 
                     <div>
-                        <h3>ORDEN ALFABÉTICO</h3>
-                        <select onChange={(e)=> handleOrderByName(e)}>
+                        <h3 className={style.filtersFont}>by aplhabetic order</h3>
+                        <select className={style.each} onChange={(e)=> handleOrderByName(e)}>
                             <option value="-">-</option>
-                            <option value="asc">Ascendent</option>
-                            <option value="desc">Descendent</option>
+                            <option value="asc">from a to z</option>
+                            <option value="desc">from z to a</option>
                         </select>
                     </div>
                     
                     <div>
-                        <h3>POR PUNTUACIÓN</h3>
-                        <select onChange={(e)=> handleOrderByHealthyScore(e)}>
+                        <h3 className={style.filtersFont}>by healthy score</h3>
+                        <select className={style.each} onChange={(e)=> handleOrderByHealthyScore(e)}>
                             <option value="-">-</option>
-                            <option value="asc">Ascendent</option>
-                            <option value="desc">Descendent</option>
+                            <option value="asc">ascendent</option>
+                            <option value="desc">descendent</option>
                         </select>
                     </div>
-                
                 </section>
                 <Paginado 
                     recipes={recipes}
                     allRecipes={allRecipes.length}
                     paginado={paginado}
                 />
-                <h3 >Page: {currentPage}</h3>
+                <div className={style.containerPageIdentifier}>
+                    <h3 className={style.pageIdentifier}>Page: {currentPage}</h3>
+                </div>
                 {
                     currentRecipes && currentRecipes.map( recipes => {
                         return (

@@ -38,6 +38,7 @@
     background-color: rgb(39, 70, 4);
     border-color: rgb(28, 36, 20);
     border-radius: 6px;
+    cursor: pointer;
 } 
 .btn:hover{
     height: 45px;

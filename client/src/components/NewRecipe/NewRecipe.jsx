@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getDiets, postRecipes } from '../../actions';
+import style from './NewRecipe.module.css'
 
 //función validadora.
 function validate (input){
@@ -120,26 +121,28 @@ export default function NewRecipe (){
 
 
     return(
-        <div>
-
-            <section>
+        <div className={style.background}>
+           
+           
+            <section className={style.top}>
                 <Link to='/home'>
-                    <button>Home</button>
+                    <button className={style.btn}> let's go back</button>
                 </Link>
+                <h1 className={style.font}>add a new recipe!</h1>
             </section>
 
-            <section>
-                <form onSubmit={(e)=>handleSubmit(e)}>
+            <section className={style.formContainer}>
+                <form onSubmit={(e)=>handleSubmit(e)} className={style  .form}>
                     <div>
-                        <label>Name: </label>
-                        <input type="text" value={input.name} onChange={(e)=>handleChange(e)} name="name"/>
-                        {errors.name && (<p>{errors.name}</p>)}
+                        <label>name: </label>
+                        <input className={errors.name ? style.labelsErr : style.labels} type="text" value={input.name} onChange={(e)=>handleChange(e)} name="name"/>
+                        {errors.name && (<p className={style.errors}>{errors.name}</p>)}
                     </div>
 
                     <div>
-                        <label>Resume: </label>
-                        <input type="text" value={input.resume} onChange={(e) => handleChange(e)} name="resume"/>
-                        {errors.resume && (<p>{errors.resume}</p>)}
+                        <label>resume: </label>
+                        <input className={errors.resume ? style.labelsErr : style.labels}  type="text" value={input.resume} onChange={(e) => handleChange(e)} name="resume"/>
+                        {errors.resume && (<p className={style.errors}>{errors.resume}</p>)}
                     </div>
 
                     {/* <div>
@@ -148,25 +151,25 @@ export default function NewRecipe (){
                     </div> */}
 
                     <div>
-                        <label>Healthy Level: </label>
-                        <input type="text" value={input.healthy} onChange={(e) => handleChange(e)} name="healthy"/>
-                        {errors.healthy && (<p>{errors.healthy}</p>)}
+                        <label>healthy level: </label>
+                        <input className={errors.healthy ? style.labelsErr : style.labels}  type="text" value={input.healthy} onChange={(e) => handleChange(e)} name="healthy"/>
+                        {errors.healthy && (<p className={style.errors}>{errors.healthy}</p>)}
                     </div>
 
                     <div>
-                        <label>Image: </label>
-                        <input type="text" value={input.image} onChange={(e) => handleChange(e)} name="image"/>
+                        <label>image: </label>
+                        <input className={style.labels} type="text" value={input.image} onChange={(e) => handleChange(e)} name="image"/>
 
                     </div>
 
                     <div>
-                        <label>Paso a paso: </label>
-                        <input type="text" value={input.instructions} onChange={(e) => handleChange(e)} name="instructions"/>
+                        <label>instructions: </label>
+                        <input className={style.labels} type="text" value={input.instructions} onChange={(e) => handleChange(e)} name="instructions"/>
                     </div>
 
                     <div>
-                        <label>Tipo de Dieta:</label>
-                       <select onChange={(e)=>handleSelect(e)} >
+                        <label>diets</label>
+                       <select className={errors.diets ? style.labelsErr : style.labels} onChange={(e)=>handleSelect(e)} >
                            <option value="-">-</option>
                            {
                                diets.map((diet) => {
@@ -174,31 +177,35 @@ export default function NewRecipe (){
                                })
                            }
                        </select>
-                       {errors.diets && (<p>{errors.diets}</p>)}
+                       {errors.diets && (<p className={style.errors}>{errors.diets}</p>)}
                     </div>
            { /* input.diets?.map es lo que va saliendo cada vez que selecciono un tipo de dietas */}
                     <div>
                         {input.diets?.map((diet)=>(
-                                <div key={diet}>
-                                    <button onClick={()=>handleDelete(diet)}>
+                            <div className={style.dietBackground}>
+                                <div className={style.btnContain} key={diet}>
+                                    <button className={style.xBtn} onClick={()=>handleDelete(diet)}>
                                         x            
                                     </button>
                                     <p>{diet}</p>
                                 </div>
+                            </div>
                             ))}
                     </div>
                     {
                     !input.name || !input.resume || !input.healthy || !input.diets.length ? 
-                        <button disabled type="submit">
-                            Create Recipe!
+                        <button className={style.btnNo} disabled type="submit">
+                            create recipe!
                         </button>
                     : 
-                        <button type="submit">
-                            Create Recipe!
+                        <button className={style.btn} type="submit">
+                            create recipe!
                         </button>
                     }
                 </form>
             </section>
+
+            
         </div>
     )
 }

@@ -29,7 +29,7 @@ export function searchBar(name){
                 payload: json.data
             })            
         } catch (error) {
-            alert('No existe tal receta!')
+            alert('This recipe does not exist!')
         }
     }
 }

@@ -1,0 +1,102 @@
+.background{
+    background-image: url('https://i.pinimg.com/originals/e1/2a/8e/e12a8ea15dc3cf40777ea8d7b01142d2.jpg');
+    background-repeat: no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    min-height:100%;
+}
+
+.top{
+    padding: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(52, 104, 97);
+}
+
+.btn{
+    padding: 10px;
+    background-color: rgb(110, 133, 130);
+    border-color: rgb(67, 82, 80);
+    color: #3f3f3f;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btnNo{
+    padding: 10px;
+    background-color: rgb(69, 83, 81);
+    border-color: rgb(25, 31, 30);
+    color: #3f3f3f;
+    border-radius: 8px;
+}
+
+.formContainer{
+    padding:50px
+}
+
+.form{
+    width: 400px; 
+    background-color: rgba(52, 104, 97, 0.678);
+    padding: 40px;
+    margin-top: 40px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.labels{
+    width: 100%;
+    margin: 5px;
+    border-radius: 5px;    
+}
+
+.labelsErr{
+    width: 100%;
+    margin: 5px;
+    border-radius: 5px;    
+    border: 2px solid red;
+}
+
+.dietBackground{
+    display: flex;
+    justify-content: center;
+}
+
+.btnContain{
+    display: flex;
+    flex-direction: row-reverse ;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(58, 63, 58, 0.863);
+    border-radius: 20px;
+    margin: 10px;
+    width: 150px;
+    padding: -15px;
+}
+
+.xBtn{
+    margin: 10px;
+    margin-left: 25px;
+    height: 30px;
+    width: 30px;
+    background-color: #9c1313;
+    border-color: #9c1313;
+    border-radius: 6px;
+}
+
+.xBtn:hover{
+    background-color: #640f0f;
+    border-color: #640f0f;
+}
+
+.errors{
+    color: red
+}
+
+.font{
+    color: #1a1a1a;
+}
+

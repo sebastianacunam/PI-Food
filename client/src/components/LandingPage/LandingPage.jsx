@@ -7,9 +7,9 @@ export default function LandingPage(){
     return (
         <div className={style.background}>
             <div className={style.container}>
-                <h1 className={style.welcome}> B I E N V E N I D O S </h1>
+                <h1 className={style.welcome}> W E L C O M E </h1>
                 <Link to='/home'>
-                    <button className={style.btn}>Ingresar</button>    
+                    <button className={style.btn}>let's go!</button>    
                 </Link>
             </div>
         </div>

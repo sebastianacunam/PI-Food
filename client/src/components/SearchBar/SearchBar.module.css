@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.btns{
+    padding: 10px;
+    background-color: rgb(110, 133, 130);
+    border-color: rgb(67, 82, 80);
+    color: #3f3f3f;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.input{
+    padding: 10px;
+    background-color: rgb(161, 196, 191);
+    border-color: rgb(67, 82, 80);
+    color: #3f3f3f;
+    border-radius: 8px;
+}
+
+.reloadContainer{
+    margin-left: 80px;
+}
+
