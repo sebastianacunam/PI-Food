@@ -51,7 +51,7 @@ const getRecipesDbSecondTry = async () => {
             diets: diets
         }
     })
-    console.log(dbInfo)
+    // console.log(dbInfo)
     return finalDbInfo
     // console.log(dbInfo) --> dbInfo tiene como propiedad dataValues, propiedad a la cual tengo que acceder
 }
