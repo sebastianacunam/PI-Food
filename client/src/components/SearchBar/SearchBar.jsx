@@ -23,7 +23,7 @@ export default function SearchBar ({setCurrentPage}){
             if(!recipe.replace(/ /g, "").match(/[^A-Za-z0-9]/)){
                 dispatch(searchBar(recipe))
                 setCurrentPage(1)
-                setRecipe(" ");
+                setRecipe("");
             } else {
                 alert('search cannot contain symbols')
             }
@@ -41,7 +41,7 @@ export default function SearchBar ({setCurrentPage}){
     return (
         <div className={style.container}>
             <div >
-                <input className={style.input} onChange={ (e) => handleSearch (e) } type="text" placeholder='find a recipe!' />
+                <input className={style.input} onChange={ (e) => handleSearch (e) } type="text" value={recipe} placeholder='find a recipe!' />
                 <button className={style.btns} onClick={ (e) => handleSubmit (e) } type="submit">search</button>
             </div>
             <div className={style.reloadContainer}>
