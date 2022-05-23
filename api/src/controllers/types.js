@@ -18,14 +18,15 @@ const types = async (req, res) => {
             const mixDiets = []
 
             apiDiets.forEach( ele => {
+                // console.log(ele) ele me trae el array con los tipos de dietas en un string  
                 ele.forEach( d => {
+                    // console.log(d)  d me trae todas las dietas como un string solamente, para luego ser pusheadas al array vacío mixDiets.
                     mixDiets.push(d)
                 })
             })
-            //console.log (diets) acá tengo todas las dietas en un array de strings
-            // console.log(mixDiets)
-
+ 
             const diets = new Set(mixDiets)
+            //acá estoy sacando de mixDiets, las dietas que se repitan para dejar solamente las que NO se repiten. 
 
             diets.forEach( typeOfDiet => {
                 Diet.findOrCreate({
@@ -35,13 +36,11 @@ const types = async (req, res) => {
                 })
             })
 
-
             const allDiets2 = await Diet.findAll();
             res.json(allDiets2)
         }
-
     } catch (error) {
-        res.status(404).json({msg: `dietTypes esta entrando al error, Seguro caduco la apiKey`, error: error})
+        res.status(404).json({msg: `dietTypes esta entrando al error`, error: error})
     }
 }
 
