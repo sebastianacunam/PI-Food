@@ -29,7 +29,15 @@ export default function DetailRecipe (props){
                     <section className={style.container}>
                             <div >
                                 <h2>{recipeDetail.name}</h2>
-                                <img className={style.img} src={recipeDetail.image} alt=""/>
+                                <div>
+                                {
+                                    recipeDetail.image? 
+                                    <img className={style.img} src={recipeDetail.image} alt=""/>
+                                    :
+                                    <img className={style.img} src={"https://us.123rf.com/450wm/belchonock/belchonock1906/belchonock190602030/124303341-mujer-con-plato-vac%C3%ADo-en-la-mesa-de-madera-vista-superior.jpg?ver=6"}/>
+                                }
+                                </div>
+
                                 {/* <h2>Rate: {recipeDetail.rate}</h2> */}
                                 <h2>healthy level: {recipeDetail.healthy}</h2>
                             </div>
@@ -39,7 +47,7 @@ export default function DetailRecipe (props){
                             </div>
                             <div className={style.div}>
                                 <h2>diets</h2>
-                                <p>{recipeDetail.diet ? recipeDetail.diet.length ? recipeDetail.diet.join(", ") : <p>no hay dietas para mostrar</p> : recipeDetail.diets.map(e=>e.name).join(", ")}</p>
+                                <p>{recipeDetail.diet ? recipeDetail.diet.length ? recipeDetail.diet.join(", ") : <p>this recipe has not any diets to show</p> : recipeDetail.diets.map(e=>e.name).join(", ")}</p>
                              
                             </div>
                             <div className={style.div}>
