@@ -32,22 +32,6 @@ export default function Home(){
         setCurrentPage(pageNumbers)
     }
 
-    const firstPage = (currentPage) => {
-        setCurrentPage(currentPage = 1)
-    }
-
-    const lastPage = (currentPage) => {
-        setCurrentPage(  currentPage = Math.floor(1+allRecipes.length/recipes))    
-    }
-
-    const prevPage = () => {
-        if(currentPage > 1) setCurrentPage(currentPage-1)
-    }
-
-    const nextPage = () => {
-        if (currentPage < Math.floor(1+allRecipes.length/recipes)) setCurrentPage(currentPage+1)
-    }
-
     //-------------------------------------------
         useEffect(()=>{
             dispatch(getRecipes());  

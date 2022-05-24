@@ -1,7 +1,7 @@
 import React from "react";
 import style from './Paginado.module.css'
 
-export default function Paginado({recipes, allRecipes, paginado, firstPage, lastPage, prevPage, nextPage}){
+export default function Paginado({recipes, allRecipes, paginado}){
     const pageNumbers = [];
 
     for (let i=1; i<=Math.ceil(allRecipes/recipes); i++){
@@ -13,12 +13,6 @@ export default function Paginado({recipes, allRecipes, paginado, firstPage, last
             <nav>
                 <ul className={style.pagination}> 
                 
-                <button onClick={()=>firstPage()}>first</button>
-                <button onClick={()=>lastPage()}>last</button>
-                <button onClick={()=>prevPage()}>prev</button>
-                <button onClick={()=>nextPage()}>next</button>
-
-
                 {/* <button className={estilos.pageButtons} onClick={ ()=> firstPage() }> Primera </button>
                 <button className={estilos.pageButtons} onClick={ ()=> prevPage() }> Anterior </button>    */}
                     {pageNumbers &&
