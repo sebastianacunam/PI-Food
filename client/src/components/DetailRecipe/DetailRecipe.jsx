@@ -39,7 +39,7 @@ export default function DetailRecipe (props){
                             </div>
                             <div className={style.div}>
                                 <h2>diets</h2>
-                                <p>{recipeDetail.diet ? recipeDetail.diet.join(", ") : recipeDetail.diets.map(e=>e.name).join(", ")}</p>
+                                <p>{recipeDetail.diet ? recipeDetail.diet.length ? recipeDetail.diet.join(", ") : <p>no hay dietas para mostrar</p> : recipeDetail.diets.map(e=>e.name).join(", ")}</p>
                              
                             </div>
                             <div className={style.div}>

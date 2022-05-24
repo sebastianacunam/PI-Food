@@ -32,6 +32,22 @@ export default function Home(){
         setCurrentPage(pageNumbers)
     }
 
+    const firstPage = (currentPage) => {
+        setCurrentPage(currentPage = 1)
+    }
+
+    const lastPage = (currentPage) => {
+        setCurrentPage(  currentPage = Math.floor(1+allRecipes.length/recipes))    
+    }
+
+    const prevPage = () => {
+        if(currentPage > 1) setCurrentPage(currentPage-1)
+    }
+
+    const nextPage = () => {
+        if (currentPage < Math.floor(1+allRecipes.length/recipes)) setCurrentPage(currentPage+1)
+    }
+
     //-------------------------------------------
         useEffect(()=>{
             dispatch(getRecipes());  
@@ -45,20 +61,22 @@ export default function Home(){
         function handleFilterDiet(e) {
             e.preventDefault();
             dispatch(filterDiet(e.target.value));
-            // setCurrentPage(1);
+            setCurrentPage(1);
             // setOrder(`Ordenado: ${e.target.value}`);
         }
 
         function handleOrderByName (e) {
             e.preventDefault();
             dispatch(orderByName(e.target.value));
-            setOrder(`Ordenado: ${e.target.value}`)
+            setCurrentPage(1);
+            setOrder(`Ordenado: ${e.target.value}`);
         }
 
         function handleOrderByHealthyScore (e) {
             e.preventDefault();
             dispatch(orderByHealthy(e.target.value));
-            setOrder(`Ordenado: ${e.target.value}`)
+            setCurrentPage(1);
+            setOrder(`Ordenado: ${e.target.value}`);
         }
     //-------------------------------------------
 
@@ -114,6 +132,10 @@ export default function Home(){
                     recipes={recipes}
                     allRecipes={allRecipes.length}
                     paginado={paginado}
+                    firstPage={firstPage}
+                    lastPage={lastPage}
+                    prevPage={prevPage}
+                    nextPage={nextPage}
                 />
                 <div className={style.containerPageIdentifier}>
                     <h3 className={style.pageIdentifier}>Page: {currentPage}</h3>

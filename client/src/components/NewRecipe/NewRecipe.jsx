@@ -132,7 +132,7 @@ export default function NewRecipe (){
             </section>
 
             <section className={style.formContainer}>
-                <form onSubmit={(e)=>handleSubmit(e)} className={style  .form}>
+                <form onSubmit={(e)=>handleSubmit(e)} className={style.form}>
                     <div>
                         <label>name: </label>
                         <input className={errors.name ? style.labelsErr : style.labels} type="text" value={input.name} onChange={(e)=>handleChange(e)} name="name"/>
