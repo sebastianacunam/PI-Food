@@ -116,10 +116,6 @@ export default function Home(){
                     recipes={recipes}
                     allRecipes={allRecipes.length}
                     paginado={paginado}
-                    firstPage={firstPage}
-                    lastPage={lastPage}
-                    prevPage={prevPage}
-                    nextPage={nextPage}
                 />
                 <div className={style.containerPageIdentifier}>
                     <h3 className={style.pageIdentifier}>Page: {currentPage}</h3>

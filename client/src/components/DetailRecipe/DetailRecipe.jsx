@@ -44,7 +44,7 @@ export default function DetailRecipe (props){
                             </div>
                             <div className={style.div}>
                                 <h2>instructions to follow </h2>
-                                {console.log(recipeDetail.instructions)}
+                                {/* {console.log(recipeDetail.instructions)} */}
                                 {recipeDetail.instructions.length ? 
                                 <p>{recipeDetail.instructions}</p> :
                                 <p>This recipe does not have instructions to follow</p>}
