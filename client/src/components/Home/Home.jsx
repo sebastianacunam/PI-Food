@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes, getDiets, filterDiet, orderByName, orderByHealthy } from '../../actions';
+import { getRecipes, getDiets, filterDiet, orderByName, orderByHealthy, filterByScore } from '../../actions';
 
 import { Link } from 'react-router-dom';
 
@@ -48,6 +48,12 @@ export default function Home(){
             setCurrentPage(1);
             // setOrder(`Ordenado: ${e.target.value}`);
         }
+        function handleByScore(e) {
+            e.preventDefault();
+            dispatch(filterByScore(e.target.value));
+            setCurrentPage(1);
+            // setOrder(`Ordenado: ${e.target.value}`);
+        }
 
         function handleOrderByName (e) {
             e.preventDefault();
@@ -80,6 +86,20 @@ export default function Home(){
                 </div>
 
                 <section className={style.menu2}>
+                {/*------------------------------------------------------------------------------------------------------*/}
+                    {/* defensa */}
+                    <div>
+                        <h3 className={style.filtersFont}>filter by score</h3>
+                        <select className={style.each} onChange={(e)=> handleByScore(e)}>
+                            <option value="-">- </option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                         
+                        </select>
+                    </div>
+                {/*------------------------------------------------------------------------------------------------------*/}
                     <div>
                         <h3 className={style.filtersFont}>filter by diet</h3>
                         <select className={style.each} onChange={(e)=> handleFilterDiet(e)}>

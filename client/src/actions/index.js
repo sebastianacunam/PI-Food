@@ -75,7 +75,15 @@ export function postRecipes(payload){
         return json
     }
 }
-
+//--------------------------------------------------------------------
+    //defensa
+export function filterByScore(payload){
+    return {
+        type: FILTER_BY_SCORE,
+        payload
+    }
+}
+//--------------------------------------------------------------------
 export const GET_RECIPES = 'GET_RECIPES'; 
 export const GET_DIETS = 'GET_DIETS'; 
 export const GET_SEARCH = 'GET_SEARCH';
@@ -83,4 +91,5 @@ export const GET_DETAIL = 'GET_DETAIL';
 export const FILTER_DIET = 'FILTER_DIET'; 
 export const ORDER_BY_NAME = 'ORDER_BY_NAME'; 
 export const ORDER_BY_HEALTHY = 'ORDER_BY_HEALTHY'; 
-export const POST_RECIPE = 'POST_RECIPE'
+export const POST_RECIPE = 'POST_RECIPE';
+export const FILTER_BY_SCORE = 'FILTER_BY_SCORE'; 

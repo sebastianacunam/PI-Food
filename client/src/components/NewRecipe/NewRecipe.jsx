@@ -105,17 +105,22 @@ export default function NewRecipe (){
 
         function handleSubmit(e){
             e.preventDefault();
-            dispatch(postRecipes(input));
-            alert("Recipe succesfully created!")
-            setInput({
-                name: "",
-                resume: "",
-                // rate: "",
-                healthy: "",
-                instructions: "",
-                image: "",
-                diets: []
-            })
+            if(input.name && input.resume && input.instructions && input.diets){
+                alert("Recipe succesfully created!")
+                dispatch(postRecipes(input));
+                setInput({
+                    name: "",
+                    resume: "",
+                    // rate: "",
+                    healthy: "",
+                    instructions: "",
+                    image: "",
+                    diets: []
+                })
+            
+            } else  { 
+                alert("there are missing inputs")
+            }
         }
     //-------------------------------------
 

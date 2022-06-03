@@ -6,6 +6,7 @@ import { GET_RECIPES,
     ORDER_BY_NAME,
     ORDER_BY_HEALTHY,
     POST_RECIPE,
+    FILTER_BY_SCORE
 
 } from "../actions";
 
@@ -56,9 +57,27 @@ function rootReducer (state = initialState, action){
                    recipes: allRecipes
                }
            }
+
+    //---------------------------------------------------------------------------------------------------------------------------------
+           //defensa! 
+        case FILTER_BY_SCORE:
+            if (action.payload !== '-'){
+                const recipesByScore = state.allRecipes.filter( d => d.healthy <= action.payload)
+                return{
+                    ...state,
+                    recipes: recipesByScore
+                }
+            } else { 
+                return {
+                    ...state,
+                    recipes: state.allRecipes
+                }
+            }
+    //---------------------------------------------------------------------------------------------------------------------------------        
+
         case ORDER_BY_NAME:   
            let orderedArray = action.payload === "asc" ? 
-                state.allRecipes.sort(function (a, b){
+                state.recipes.sort(function (a, b){
                   if (a.name > b.name){
                       return 1
                   }
@@ -68,7 +87,7 @@ function rootReducer (state = initialState, action){
                   return 0
                 }) 
             : 
-                state.allRecipes.sort(function (a, b){
+                state.recipes.sort(function (a, b){
                     if (a.name > b.name){
                         return -1
                     }
@@ -92,7 +111,7 @@ function rootReducer (state = initialState, action){
             }
         case ORDER_BY_HEALTHY:
             let orderedArray2 = action.payload === "desc" ? 
-                state.allRecipes.sort(function (a, b){
+                state.recipes.sort(function (a, b){
                   if (a.healthy > b.healthy){
                       return 1
                   }
@@ -102,7 +121,7 @@ function rootReducer (state = initialState, action){
                   return 0
                 }) 
             : 
-                state.allRecipes.sort(function (a, b){
+                state.recipes.sort(function (a, b){
                     if (a.healthy > b.healthy){
                         return -1
                     }
