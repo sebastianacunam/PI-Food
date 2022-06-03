@@ -16,7 +16,7 @@ export default function CardRecipe ({ name, image, diets, healthy, /*rate*/ id }
                                         image ? 
                                         <img className={style.img} src={image} alt="img not found"/>
                                         :
-                                        <img className={style.img} src={"https://us.123rf.com/450wm/belchonock/belchonock1906/belchonock190602030/124303341-mujer-con-plato-vac%C3%ADo-en-la-mesa-de-madera-vista-superior.jpg?ver=6"}/>
+                                        <img className={style.img} src={"https://us.123rf.com/450wm/belchonock/belchonock1906/belchonock190602030/124303341-mujer-con-plato-vac%C3%ADo-en-la-mesa-de-madera-vista-superior.jpg?ver=6"} alt="img not found"/>
                                     }
                                 </div>
                         </Link>
