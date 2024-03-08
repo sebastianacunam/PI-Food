@@ -105,7 +105,7 @@ export default function NewRecipe (){
 
         function handleSubmit(e){
             e.preventDefault();
-            if(input.name && input.resume && input.instructions && input.diets){
+            if(input.name && input.resume && input.instructions && input.diets.length !== 0){
                 alert("Recipe succesfully created!")
                 dispatch(postRecipes(input));
                 setInput({
