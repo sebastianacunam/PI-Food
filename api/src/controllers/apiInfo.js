@@ -5,14 +5,17 @@ const { API_KEY } = process.env
 
 const getRecipeAPI = async () => {
     const recipesApi = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
-    const recipes = recipesApi.data.results.map(r =>{
+    
+    console.log('estoy acá🚀🚀🚀🚀🚀', recipesApi.data.results);
+    
+    const recipes = recipesApi?.data.results.map(r =>{
         return {
             id: r.id,
             name: r.title,
             resume: r.summary,
             // rate: r.spoonacularScore,
             healthy: r.healthScore,
-            instructions: r.analyzedInstructions.map( i => i.steps.map( s => s.step )),
+            // instructions: r.analyzedInstructions.map( i => i.steps.map( s => s.step )),
             diets: r.diets.map( d => d),
             image: r.image,
         }
@@ -35,6 +38,7 @@ const getRecipeAPI = async () => {
 
 const getRecipesDbSecondTry = async () => {
     const dbInfo = await Recipe.findAll({include: Diet})
+    console.log('O ESTOY POR ACÁ? 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥', dbInfo);
     const finalDbInfo = dbInfo.map( e => {
         const diets = []
         for (let i = 0; i < e.dataValues.diets ; i++){
@@ -46,7 +50,7 @@ const getRecipesDbSecondTry = async () => {
             resume: e.dataValues.resume,
             // rate: e.dataValues.rate,
             healthy: e.dataValues.healthy,
-            instructions: e.dataValues.instructions,
+            // instructions: e.dataValues.instructions,
             image: e.dataValues.image,
             diets: diets
         }
