@@ -5,7 +5,7 @@ const path = require('path');
 
 //se agrega db_name para el tema del deploy
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+  DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME, DATABASE_URL
 } = process.env;
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
@@ -16,7 +16,7 @@ const {
 // TO PRODUCTION
 let sequelize =
   process.env.NODE_ENV === "production"
-  ? new Sequelize(`postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  ? new Sequelize(`${DATABASE_URL}`,
     { logging: false, 
       native: false,
       ssl: {
