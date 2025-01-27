@@ -5,7 +5,7 @@ const path = require('path');
 
 //se agrega db_name para el tema del deploy
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+  DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
 } = process.env;
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
@@ -16,28 +16,37 @@ const {
 // TO PRODUCTION
 let sequelize =
   process.env.NODE_ENV === "production"
-    ? new Sequelize({
-        database: DB_NAME,
-        dialect: "postgres",
-        host: DB_HOST,
-        port: 5432,
-        username: DB_USER,
-        password: DB_PASSWORD,
-        pool: {
-          max: 3,
-          min: 1,
-          idle: 10000,
-        },
-        dialectOptions: {
-          ssl: {
-            require: true,
-            // Ref.: https://github.com/brianc/node-postgres/issues/2009
-            rejectUnauthorized: false,
-          },
-          keepAlive: true,
-        },
-        ssl: true,
-      })
+  ? new Sequelize(`postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+    { logging: false, 
+      native: false,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      }, 
+    }
+  )
+  // ? new Sequelize({
+    //     database: DB_NAME,
+    //     dialect: "postgres",
+    //     host: DB_HOST,
+    //     port: 5432,
+    //     username: DB_USER,
+    //     password: DB_PASSWORD,
+    //     pool: {
+    //       max: 3,
+    //       min: 1,
+    //       idle: 10000,
+    //     },
+    //     dialectOptions: {
+    //       ssl: {
+    //         require: true,
+    //         // Ref.: https://github.com/brianc/node-postgres/issues/2009
+    //         rejectUnauthorized: false,
+    //       },
+    //       keepAlive: true,
+    //     },
+    //     ssl: true,
+    //   })
     : new Sequelize(
         `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`,
         { logging: false, native: false }
