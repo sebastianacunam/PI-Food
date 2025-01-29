@@ -40,7 +40,7 @@ export default function SearchBar ({setCurrentPage}){
     
     return (
         <div className={style.container}>
-            <div >
+            <div className={style.searchBarContainer}>
                 <input className={style.input} onChange={ (e) => handleSearch (e) } type="text" value={recipe} placeholder='find a recipe!' />
                 <button className={style.btns} onClick={ (e) => handleSubmit (e) } type="submit">search</button>
             </div>

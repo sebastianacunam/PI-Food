@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import CardRecipe from '../CardRecipe/CardRecipe';
 import SearchBar from '../SearchBar/SearchBar';
 import Paginado from '../Paginado/Paginado';
-
+import { ClipLoader } from 'react-spinners'; // Importar el loader
 import style from './Home.module.css'
 
 export default function Home(){
@@ -23,6 +23,7 @@ export default function Home(){
         //variables para el paginado
     const [currentPage, setCurrentPage] = useState(1)
     const [recipes] = useState(9)
+    const [loading, setLoading] = useState(true); // Estado para el loader
 
     const lastRecipe = currentPage * recipes
     const firstRecipe = lastRecipe - recipes 
@@ -33,11 +34,21 @@ export default function Home(){
     }
 
     //-------------------------------------------
-        useEffect(()=>{
-            dispatch(getRecipes());  
-            dispatch(getDiets());
-        }, [dispatch])
+    useEffect(() => {
+        // Función asíncrona para cargar los datos
+        const fetchData = async () => {
+            try {
+                await dispatch(getRecipes()); // Espera a que se carguen las recetas
+                await dispatch(getDiets()); // Espera a que se carguen las dietas
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false); // Desactivar el loader cuando los datos estén listos
+            }
+        };
 
+        fetchData(); // Llamar a la función asíncrona
+    }, [dispatch]);
     //-------------------------------------------
         //funciones manejadoras-----
 
@@ -75,16 +86,31 @@ export default function Home(){
         return (
             <div className={style.background}>
                 <div className={style.menu1}>
-                    <h1 className={style.filtersFont}>we❤food</h1>
-                    <SearchBar setCurrentPage={setCurrentPage}/>
-                    <Link to='/'>
-                        <button className={style.btnMenu1}>go back!</button>
-                    </Link>
-                    <Link to='/recipe'>
-                        <button className={style.btnMenu1}>create recipe</button>
-                    </Link>
+                    <div className={style.searchBarContainer}>
+                        <h1 className={style.filtersFont}>we❤food</h1>
+                        <SearchBar setCurrentPage={setCurrentPage}/>
+                    </div>
+                    <div className={style.searchBarContainer2}>
+                        <Link to='/'>
+                            <button className={style.btnMenu1}>go back!</button>
+                        </Link>
+                        <Link to='/recipe'>
+                            <button className={style.btnMenu1}>create recipe</button>
+                        </Link>
+                    </div>
+                    
                 </div>
-
+                
+                {
+                loading ? ( // Mostrar el loader si loading es true
+                <div className={style.loaderContainer}>
+                    <div className={style.loaderInnerContainer}>
+                        <ClipLoader color="#36d7b7" size={100} />
+                        <h1 className={style.filtersFont}>Esto puede tardar unos minutos...</h1>
+                    </div>
+                </div>
+            ) : (
+                <>
                 <section className={style.menu2}>
                 {/*------------------------------------------------------------------------------------------------------*/}
                     {/* defensa */}
@@ -132,29 +158,26 @@ export default function Home(){
                         </select>
                     </div>
                 </section>
-
-                {
-                    currentRecipes && currentRecipes.map( recipes => {
-                        return (
-                            <CardRecipe 
-                            name={recipes.name} 
-                            image={recipes.image} 
-                            diets={recipes.diets} 
-                            healthy={recipes.healthy}
-                            // rate={recipes.rate} 
-                            id={recipes.id}
-                            key={recipes.id}/>
-                        )
-                    })
-                }
-                <Paginado 
-                    recipes={recipes}
-                    allRecipes={allRecipes.length}
-                    paginado={paginado}
-                />
-                <div className={style.containerPageIdentifier}>
-                    <h3 className={style.pageIdentifier}>Page: {currentPage}</h3>
-                </div>
+                    {currentRecipes && currentRecipes.map(recipe => (
+                        <CardRecipe
+                            name={recipe.name}
+                            image={recipe.image}
+                            diets={recipe.diets}
+                            healthy={recipe.healthy}
+                            id={recipe.id}
+                            key={recipe.id}
+                        />
+                    ))}
+                    <Paginado
+                        recipes={recipes}
+                        allRecipes={allRecipes.length}
+                        paginado={paginado}
+                    />
+                    <div className={style.containerPageIdentifier}>
+                        <h3 className={style.pageIdentifier}>Page: {currentPage}</h3>
+                    </div>
+                </>
+            )}
             </div>
         )
 } 

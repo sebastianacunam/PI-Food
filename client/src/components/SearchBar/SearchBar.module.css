@@ -1,6 +1,9 @@
 .container{
     display: flex;
     flex-direction: row;
+    margin-left: 10px;
+    justify-content: center;
+    text-align: center;
 }
 
 .btns{
@@ -12,6 +15,12 @@
     cursor: pointer;
 }
 
+.searchBarContainer{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
 .input{
     padding: 10px;
     background-color: rgb(161, 196, 191);
@@ -21,6 +30,7 @@
 }
 
 .reloadContainer{
-    margin-left: 80px;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 

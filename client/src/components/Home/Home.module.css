@@ -6,7 +6,21 @@
     position: absolute;
     width: 100%;
     min-height:100%;
+
 } 
+
+.loaderContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15%;
+    align-items: center;
+}
+
+.loaderInnerContainer{
+    background-color: rgba(52, 104, 97, 0.795);
+    padding: 65px;
+    border-radius: 10px;
+}
 
 .menu1{
     padding: 10px;
@@ -15,6 +29,18 @@
     align-items: center;
     justify-content: space-evenly;
     background-color: rgb(52, 104, 97);
+}
+
+.searchBarContainer{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.searchBarContainer2{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
 }
 
 .btnMenu1{
@@ -82,15 +108,37 @@
     .menu1{
         padding: 10px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
         background-color: rgb(52, 104, 97);
     }
     
-    .menu2 {
+    .menu2{
+        padding: 10px;
+        display: flex;
         flex-direction: column;
-        align-items: center;     
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: rgba(52, 104, 97, 0.678);
+        
+    }
+
+        
+    .searchBarContainer{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .searchBarContainer2{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .loaderContainer{
+        margin-top: 35%;
     }
 
     .btnMenu1, .each {
@@ -105,7 +153,16 @@
         background-attachment: scroll;
     }
 
-    .menu1, .menu2 {
+    .menu1{
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: rgb(52, 104, 97);
+    } 
+    
+    .menu2 {
         flex-direction: column;
         align-items: center;
     }
