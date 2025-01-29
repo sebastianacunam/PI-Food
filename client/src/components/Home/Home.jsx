@@ -132,14 +132,7 @@ export default function Home(){
                         </select>
                     </div>
                 </section>
-                <Paginado 
-                    recipes={recipes}
-                    allRecipes={allRecipes.length}
-                    paginado={paginado}
-                />
-                <div className={style.containerPageIdentifier}>
-                    <h3 className={style.pageIdentifier}>Page: {currentPage}</h3>
-                </div>
+
                 {
                     currentRecipes && currentRecipes.map( recipes => {
                         return (
@@ -154,6 +147,14 @@ export default function Home(){
                         )
                     })
                 }
+                <Paginado 
+                    recipes={recipes}
+                    allRecipes={allRecipes.length}
+                    paginado={paginado}
+                />
+                <div className={style.containerPageIdentifier}>
+                    <h3 className={style.pageIdentifier}>Page: {currentPage}</h3>
+                </div>
             </div>
         )
 } 

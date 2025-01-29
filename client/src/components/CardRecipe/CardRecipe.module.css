@@ -50,3 +50,42 @@
     color: black;
     text-decoration: none;
 }
+
+/* 🎯 RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .border {
+        width: 400px;
+    }
+
+    .img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .border {
+        width: 350px;
+    }
+
+    .subcontainer {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .border {
+        width: 350px;
+        margin: 10px;
+    }
+
+    .recipeCard {
+        margin: 10px;
+    }
+
+    .img {
+        width: 100%;
+        height: auto;
+    }
+}
