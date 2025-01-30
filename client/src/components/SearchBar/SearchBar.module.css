@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.btns{
+.btns, .btns2{
     padding: 10px;
     background-color: rgb(110, 133, 130);
     border-color: rgb(67, 82, 80);
@@ -34,3 +34,8 @@
     margin-top: 20px;
 }
 
+@media (max-width: 768px) {
+    .btns2{
+        display: none;
+    }
+}

@@ -50,9 +50,10 @@
     color: #3f3f3f;
     border-radius: 8px;
     cursor: pointer;
+    margin-left: 20px;
 }
 
-.filtersFont{
+.filtersFont, .filtersFontLoader{
     color: #1a1a1a;
 }
 
@@ -124,6 +125,19 @@
         
     }
 
+    .loaderContainer{
+        margin-top: 15%;
+    }
+
+    .loaderInnerContainer{
+        padding: 40px;
+    }
+
+    .filtersFontLoader{
+        color: #1a1a1a;
+        font-size: 14px;
+    }
+
         
     .searchBarContainer{
         display: flex;
@@ -133,7 +147,7 @@
 
     .searchBarContainer2{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         padding: 10px;
     }
 

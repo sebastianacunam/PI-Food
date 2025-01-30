@@ -106,7 +106,7 @@ export default function Home(){
                 <div className={style.loaderContainer}>
                     <div className={style.loaderInnerContainer}>
                         <ClipLoader color="#36d7b7" size={100} />
-                        <h1 className={style.filtersFont}>Esto puede tardar unos minutos...</h1>
+                        <h1 className={style.filtersFontLoader}>Esto puede tardar unos minutos...</h1>
                     </div>
                 </div>
             ) : (

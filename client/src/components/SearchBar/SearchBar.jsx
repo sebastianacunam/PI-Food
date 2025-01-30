@@ -45,7 +45,7 @@ export default function SearchBar ({setCurrentPage}){
                 <button className={style.btns} onClick={ (e) => handleSubmit (e) } type="submit">search</button>
             </div>
             <div className={style.reloadContainer}>
-                <button className={style.btns} onClick={ (e) => handleClick (e) }>reload your recipes!</button>
+                <button className={style.btns2} onClick={ (e) => handleClick (e) }>reload your recipes!</button>
             </div>
         </div>
     )
